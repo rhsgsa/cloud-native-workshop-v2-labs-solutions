@@ -33,6 +33,8 @@
 	<script src="/app/services/orders.js"></script>
 	<script src="/app/directives/header.js"></script>
 	<script src="/app/directives/rating.js"></script>
+	<script src="/app/qr.js"></script>
+	<script src="/app/qrious.js"></script>
 	<link rel="stylesheet" href="/app/css/coolstore.css" />
 
 	<link rel="stylesheet" href="/bower_components/patternfly/dist/css/patternfly.min.css" />
@@ -48,6 +50,9 @@
 <div header></div>
 <pf-notification-list></pf-notification-list>
 <div ng-view></div>
+<div id="overlay" class="overlay" onClick="hideQR()">
+  <canvas style="padding-left:0;padding-right:0;margin-left:auto;margin-right:auto;margin-top:50px;display:block;" id="qr"></canvas>
+</div>
 
 </body>
 </html>

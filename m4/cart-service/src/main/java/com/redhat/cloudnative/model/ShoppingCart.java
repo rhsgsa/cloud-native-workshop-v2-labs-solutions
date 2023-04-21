@@ -2,7 +2,8 @@ package com.redhat.cloudnative.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import org.eclipse.microprofile.config.ConfigProvider;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.infinispan.protostream.annotations.ProtoFactory;
 import org.infinispan.protostream.annotations.ProtoField;
 
@@ -14,6 +15,7 @@ public class ShoppingCart {
     private double shippingPromoSavings = 0.0f;
     private double cartTotal = 0.0f;
     private String cartId;
+
     private List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>();
 
     public ShoppingCart() {}
@@ -31,6 +33,10 @@ public class ShoppingCart {
         this.cartTotal = cartTotal;
         this.cartId = cartId;
         this.shoppingCartItemList = shoppingCartItemList;
+    }
+
+    public String getClusterName() {
+        return ConfigProvider.getConfig().getValue("cart.cluster.name", String.class);
     }
 
     @ProtoField(number = 1)

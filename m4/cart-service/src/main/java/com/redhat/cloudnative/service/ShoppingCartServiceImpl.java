@@ -111,7 +111,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         products.add(new Product("165954", "Patagonia Refugio pack 28L", "", 6.00));
         products.add(new Product("444434", "Red Hat Impact T-shirt", "", 9.00));
         products.add(new Product("444435", "Quarkus twill cap", "", 13.00));
-        products.add(new Product("444437", "Lytro Camera", "Nanobloc Universal Webcam Cover", 2.75));
+        products.add(new Product("444437", "Nanobloc Universal Webcam Cover", "Nanobloc Universal Webcam Cover", 2.75));
 
         return products;
     }

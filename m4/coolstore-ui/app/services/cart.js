@@ -46,7 +46,8 @@ angular.module("app")
 
 	factory.reset = function() {
 		cart = {
-			shoppingCartItemList: []
+			shoppingCartItemList: [],
+			loaded: 'false'
 		};
 		var tmpId = localStorage.getItem('cartId');
 		var authId = $auth.userInfo ? $auth.userInfo.sub : null;
@@ -77,11 +78,13 @@ angular.module("app")
 		}
 
 		cart.shoppingCartItemList = [];
+		cart.loaded = 'false';
 		$http({
 			   method: 'GET',
 			   url: baseUrl + '/' + cartId
 		   }).then(function(resp) {
 			    cart = resp.data;
+				cart.loaded = 'true';
 		   }, function(err) {
 		});
 
@@ -99,6 +102,7 @@ angular.module("app")
 		}).then(function(resp) {
 			cart = resp.data;
 			deferred.resolve(resp.data);
+			cart.loaded = 'true';
 		}, function(err) {
 			deferred.reject(err);
 		});

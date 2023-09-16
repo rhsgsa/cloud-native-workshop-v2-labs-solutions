@@ -7,8 +7,14 @@
       <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="#/">
-      <img ng-src="/app/imgs/logo.png" alt="Red Hat Logo" width="10%" height="10%"/>
+      <!--<img ng-src="/app/imgs/logo.png" alt="Red Hat Logo" width="10%" height="10%"/>-->
+      <div style="background-repeat: no-repeat;background-image: url(/app/imgs/logo.png);background-size: contain; width:100px; height:30px;" ></div>
     </a>
+    <a class="navbar-brand" href="#/">
+      <div style="font-size:10px; padding-left:60px; padding-top: 5px;  background-image: url(/app/imgs/{{provider}}.png);background-size: contain;background-repeat: no-repeat; width:150px; height:30px;" >
+      {{zone}}
+     </div>
+   </a>
   </div>
   <div class="collapse navbar-collapse navbar-collapse-1">
     <ul class="nav navbar-nav navbar-utility">

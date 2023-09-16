@@ -128,7 +128,10 @@ angular.module('app')
 
                 $scope.cartTotal = 0.0;
                 $scope.itemCount = 0;
-
+                $scope.provider = info?info.provider:'';
+                $scope.region = info?info.region:'';
+                $scope.zone = info?info.zone:'';
+                
                 $scope.isLoggedIn = function () {
                     return $auth.loggedIn;
                 };

@@ -1,68 +1,73 @@
+<div ng-if="cart.loaded == 'true'" >
+	<div class="row example-container">
 
-<div class="row example-container">
+		<div class="col-md-8 list-view-container">
+			
+				<div ng-switch="(cart.shoppingCartItemList.length > 0 ).toString()">
+					<div ng-switch-when="true">
+						<div pf-list-view items="items" config="config"
+							action-buttons="actionButtons">
 
-	<div class="col-md-8 list-view-container">
+							<div class="list-view-pf-description">
 
-		<div ng-switch="(cart.shoppingCartItemList.length > 0).toString()">
-			<div ng-switch-when="true">
-				<div pf-list-view items="items" config="config"
-					action-buttons="actionButtons">
-
-					<div class="list-view-pf-description">
-
-							<div class="media">
-							  <div class="media-left">
-							      <img	class="media-object" ng-src="/app/imgs/{{item.product.name}}.jpg"
-							      		alt="{{item.product.name}}">
-							  </div>
-							  <div class="media-body">
-							  
-							    <h2 class="media-heading">{{item.product.name}}</h2>
-							    <div class="p-t-8">
-							    	<span class="label label-default">Quantity: {{item.quantity}}</span>
-								</div>
-								<div class="p-t-8">
-									{{item.product.desc}}
-								</div>
-							  </div>
+									<div class="media">
+									<div class="media-left">
+										<img	class="media-object" ng-src="/app/imgs/{{item.product.name}}.jpg"
+												alt="{{item.product.name}}">
+									</div>
+									<div class="media-body">
+									
+										<h2 class="media-heading">{{item.product.name}}</h2>
+										<div class="p-t-8">
+											<span class="label label-default">Quantity: {{item.quantity}}</span>
+										</div>
+										<div class="p-t-8">
+											{{item.product.desc}}
+										</div>
+									</div>
+									</div>
 							</div>
+						</div>
+					</div>
+					<div ng-switch-when="false">
+						<h1>You have not added any items to your Shopping Cart!</h1>
+						<a ng-href="#/" class="btn btn-default btn-lg">Return to Store</a>
 					</div>
 				</div>
+			
+			
+		</div>
+
+		<div class="col-md-4 panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Shopping Summary ({{cart.clusterName}})</h3>
 			</div>
-			<div ng-switch-when="false">
-				<h1>You have not added any items to your Shopping Cart!</h1>
-				<a ng-href="#/" class="btn btn-default btn-lg">Return to Store</a>
+			<div class="panel-body">
+
+				<h3>Cart Total: {{subtotal | currency}}</h3>
+				<h3>Promotional Item Savings: {{cart.cartItemPromoSavings |
+					currency}}</h3>
+				<h3>Subtotal: {{cart.cartItemTotal | currency}}</h3>
+				<h3>Shipping: {{cart.shippingTotal | currency}}</h3>
+				<h3>Promotional Shipping Savings: {{cart.shippingPromoSavings |
+					currency}}</h3>
+				<h2>
+					Total Order Amount: <strong>{{cart.cartTotal | currency}}</strong>
+				</h2>
 			</div>
-		</div>
-	</div>
+			<div class="panel-footer">
+				<button ng-disabled="cart.shoppingCartItemList.length < 0"
+					class="btn btn-primary btn-lg" data-toggle="modal"
+					data-target="#checkoutModal" type="button">Checkout</button>
 
-	<div class="col-md-4 panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">Shopping Summary ({{cart.clusterName}})</h3>
-		</div>
-		<div class="panel-body">
-
-			<h3>Cart Total: {{subtotal | currency}}</h3>
-			<h3>Promotional Item Savings: {{cart.cartItemPromoSavings |
-				currency}}</h3>
-			<h3>Subtotal: {{cart.cartItemTotal | currency}}</h3>
-			<h3>Shipping: {{cart.shippingTotal | currency}}</h3>
-			<h3>Promotional Shipping Savings: {{cart.shippingPromoSavings |
-				currency}}</h3>
-			<h2>
-				Total Order Amount: <strong>{{cart.cartTotal | currency}}</strong>
-			</h2>
-		</div>
-		<div class="panel-footer">
-			<button ng-disabled="cart.shoppingCartItemList.length < 0"
-				class="btn btn-primary btn-lg" data-toggle="modal"
-				data-target="#checkoutModal" type="button">Checkout</button>
-
-			<a ng-href="#/" class="btn btn-default btn-lg">Keep Shopping</a>
+				<a ng-href="#/" class="btn btn-default btn-lg">Keep Shopping</a>
+			</div>
 		</div>
 	</div>
 </div>
-
+<div ng-if="cart.loaded != 'true'" style="background-position-x: 20px ; background-image: url(/app/imgs/loading.gif); background-repeat: no-repeat; background-size: contain; padding-left: 70px;" >
+	<h1>Loading...</h1>
+</div>
 
 <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">

@@ -23,6 +23,7 @@ angular.module("app")
             }
         }).then(function(resp) {
             cart = resp.data;
+			cart.loaded = 'true';
             deferred.resolve(resp.data);
         }, function(err) {
             deferred.reject(err);
@@ -37,6 +38,7 @@ angular.module("app")
 			   url: baseUrl + '/checkout/' + cartId
 		   }).then(function(resp) {
 			    cart = resp.data;
+				cart.loaded = 'true';
 			   	deferred.resolve(resp.data);
 		   }, function(err) {
 			   	deferred.reject(err);
@@ -118,6 +120,7 @@ angular.module("app")
 		}).then(function(resp) {
 			cart = resp.data;
 			deferred.resolve(resp.data);
+			cart.loaded = 'true';
 		}, function(err) {
 			deferred.reject(err);
 		});
@@ -133,6 +136,7 @@ angular.module("app")
 		   }).then(function(resp) {
 			    cart = resp.data;
 			   	deferred.resolve(resp.data);
+				cart.loaded = 'true';
 		   }, function(err) {
 			   	deferred.reject(err);
 		   });
